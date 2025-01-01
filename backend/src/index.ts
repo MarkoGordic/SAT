@@ -28,6 +28,9 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello from OTISAK api!");
 });
 
+import authRouter from './routes/auth';
+app.use('/auth', authRouter);
+
 //initializeSocketIO(httpServer);
 
 httpServer.listen(port, () => {
