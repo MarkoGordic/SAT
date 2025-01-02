@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from "express";
-//import initializeSocketIO from './util/SocketIOServer';
+import setupSwagger from "./utils/swaggerSetup";
 const bodyParser = require("body-parser");
 const cors = require("cors");
 import path from "path";
@@ -9,7 +9,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app: Express = express();
+const swaggerApp: Express = express();
 const port = process.env.PORT || 11000;
+const swaggerPort = process.env.SWAGGER_PORT || 11002;
 
 const httpServer = createServer(app);
 
@@ -18,10 +20,10 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || true,
-    methods: 'GET,POST,PUT,DELETE',
-    credentials: true,
-}
+  origin: process.env.FRONTEND_URL || true,
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true,
+};
 app.use(cors(corsOptions));
 
 app.get("/", (req: Request, res: Response) => {
@@ -31,8 +33,12 @@ app.get("/", (req: Request, res: Response) => {
 import authRouter from './routes/auth';
 app.use('/auth', authRouter);
 
-//initializeSocketIO(httpServer);
+swaggerApp.use("/", setupSwagger());
 
 httpServer.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
+});
+
+swaggerApp.listen(swaggerPort, () => {
+  console.log(`[Swagger]: Swagger docs available at http://localhost:${swaggerPort}/api-docs`);
 });

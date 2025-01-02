@@ -37,7 +37,7 @@ const upload_middleware = multer({
 });
 
 router.post(
-    "/",
+    "/register",
     upload_middleware.single("avatar"),
     body("email").isEmail().withMessage("Invalid email format."),
     body("password").isLength({ min: 6 }).withMessage("Password must be at least 6 characters long."),
