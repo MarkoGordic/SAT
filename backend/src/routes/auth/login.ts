@@ -6,7 +6,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.post("/login", async (req: Request, res: Response): Promise<void> => {
+router.post("/", async (req: Request, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -25,7 +25,7 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
         }
 
         const token = jwt.sign(
-            { user_id: user.id, email: user.email, role: user.role },
+            { user_id: user.id, email: user.email, roles: user.roles },
             process.env.JWT_SECRET || "default_secret",
             { expiresIn: "12h" }
         );

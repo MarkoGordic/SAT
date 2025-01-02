@@ -15,7 +15,6 @@ model User {
   password      String
   date_of_birth DateTime
   created_at    DateTime @default(now())
-  role          String[]
-  permissions   String[]
+  roles         String[]
   profile_pic   String
 }

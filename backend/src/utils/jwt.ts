@@ -2,26 +2,21 @@ import { Request, Response, NextFunction } from 'express';
 import jwt, { SignOptions, VerifyErrors, JwtPayload } from 'jsonwebtoken';
 import fs from 'fs';
 import dotenv from 'dotenv';
+import { JwtUser, Role } from '../types';
 
 dotenv.config();
 
 const privateKey = fs.readFileSync(process.env.PRIVATE_KEY_PATH || '', 'utf8');
 const publicKey = fs.readFileSync(process.env.PUBLIC_KEY_PATH || '', 'utf8');
 
-interface User {
-    id: number;
-    role: number;
-    email: string;
-}
-
 interface AuthenticatedRequest extends Request {
-    user?: JwtPayload | string;
+    user?: JwtUser;
 }
 
-export const generateJWT = (user: User): string => {
+export const generateJWT = (user: JwtUser): string => {
     const payload = {
-        user_id: user.id,
-        role: user.role,
+        id: user.id,
+        roles: user.roles,
         email: user.email,
     };
 
@@ -42,13 +37,22 @@ export const verifyJWT = (req: AuthenticatedRequest, res: Response, next: NextFu
         return;
     }
 
-    jwt.verify(token, publicKey, { algorithms: ["RS512"] }, (err: VerifyErrors | null, decoded: JwtPayload | string | undefined) => {
-        if (err) {
-            res.status(403).json({ message: 'Invalid token. Access forbidden.' });
-            return;
-        }
+    jwt.verify(token, publicKey, { algorithms: ["RS512"] }, (err: VerifyErrors | null, decoded: string | JwtPayload | undefined) => {
+            if (err) {
+                res.status(403).json({ message: 'Invalid token. Access forbidden.' });
+                return;
+            }
 
-        req.user = decoded;
-        next();
-    });
+            if (typeof decoded === 'object' && decoded !== null) {
+                req.user = {
+                    id: decoded.id as string,
+                    email: decoded.email as string,
+                    roles: decoded.roles as Role[],
+                };
+                next();
+            } else {
+                res.status(403).json({ message: 'Invalid token. Access forbidden.' });
+            }
+        }
+    );
 };

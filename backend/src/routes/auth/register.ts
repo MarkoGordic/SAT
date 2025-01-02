@@ -37,7 +37,7 @@ const upload_middleware = multer({
 });
 
 router.post(
-    "/register",
+    "/",
     upload_middleware.single("avatar"),
     body("email").isEmail().withMessage("Invalid email format."),
     body("password").isLength({ min: 6 }).withMessage("Password must be at least 6 characters long."),
@@ -77,8 +77,7 @@ router.post(
                     date_of_birth: new Date(date_of_birth),
                     created_at: new Date(),
                     profile_pic: profile_pic_filename || "",
-                    role: [],
-                    permissions: [],
+                    roles: ["user"], // TODO: Admin will pass this as a parameter
                 },
             });
 
