@@ -1,0 +1,70 @@
+paths:
+  /user/{id}:
+    get:
+      summary: Get user data by ID
+      tags:
+        - User Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user to retrieve
+          schema:
+            type: string
+            example: "abc123"
+      responses:
+        200:
+          description: User data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "abc123"
+                  email:
+                    type: string
+                    example: user@example.com
+                  first_name:
+                    type: string
+                    example: John
+                  last_name:
+                    type: string
+                    example: Doe
+                  date_of_birth:
+                    type: string
+                    format: date
+                    example: 1990-01-01
+                  profile_pic:
+                    type: string
+                    example: avatar123.png
+                  roles:
+                    type: array
+                    items:
+                      type: string
+                    example: ["user"]
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: 2024-01-01T12:34:56Z
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found.
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error.

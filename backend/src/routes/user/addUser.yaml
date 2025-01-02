@@ -1,13 +1,13 @@
 tags:
-  - name: Auth
-    description: Authentication endpoints
+  - name: User Management
+    description: Endpoints for managing users
 
 paths:
-  /auth/register:
+  /user:
     post:
-      summary: Register a new user
+      summary: Add a new user
       tags:
-        - Auth
+        - User Management
       requestBody:
         required: true
         content:
@@ -20,6 +20,7 @@ paths:
                 - first_name
                 - last_name
                 - date_of_birth
+                - roles
               properties:
                 email:
                   type: string
@@ -39,13 +40,18 @@ paths:
                   type: string
                   format: date
                   description: User's date of birth (YYYY-MM-DD)
+                roles:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of roles assigned to the user (e.g., ["assistant", "professor", "admin"])
                 avatar:
                   type: string
                   format: binary
                   description: User's avatar image file (JPEG or PNG, max size 5MB)
       responses:
         201:
-          description: User registered successfully
+          description: User added successfully
           content:
             application/json:
               schema:
@@ -53,7 +59,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: User user@example.com registered successfully.
+                    example: User user@example.com added successfully.
         400:
           description: Validation errors or missing fields
           content:

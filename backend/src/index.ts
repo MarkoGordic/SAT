@@ -26,12 +26,18 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello from OTISAK api!");
+const apiRouter = express.Router();
+
+apiRouter.get("/", (req: Request, res: Response) => {
+  res.send("Hello from OTISAK API!");
 });
 
 import authRouter from './routes/auth';
-app.use('/auth', authRouter);
+apiRouter.use('/auth', authRouter);
+import userRouter from './routes/user';
+apiRouter.use('/user', userRouter);
+
+app.use('/api/v1', apiRouter);
 
 swaggerApp.use("/", setupSwagger());
 

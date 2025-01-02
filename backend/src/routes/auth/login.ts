@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
+import { generateJWT } from "../../utils/jwt";
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -24,11 +24,11 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        const token = jwt.sign(
-            { user_id: user.id, email: user.email, roles: user.roles },
-            process.env.JWT_SECRET || "default_secret",
-            { expiresIn: "12h" }
-        );
+        const token = generateJWT({
+            id: user.id,
+            email: user.email,
+            roles: user.roles,
+        });
 
         res.status(200).json({ token });
     } catch (error) {

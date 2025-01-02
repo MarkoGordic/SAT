@@ -2,18 +2,18 @@ import { User, JwtUser, Role } from "../types";
 
 type PermissionCheck<Key extends keyof Permissions> =
   | boolean
-  | ((user: JwtUser, data: Permissions[Key]["dataType"]) => boolean)
+  | ((user: JwtUser, data: Permissions[Key]["dataType"]) => boolean);
 
 type RolesWithPermissions = {
   [R in Role]: Partial<{
     [Key in keyof Permissions]: Partial<{
-      [Action in Permissions[Key]["action"]]: PermissionCheck<Key>
-    }>
-  }>
-}
+      [Action in Permissions[Key]["action"]]: PermissionCheck<Key>;
+    }>;
+  }>;
+};
 
 export type Permissions = {
-  users: {
+  user: {
     dataType: User;
     action: "view" | "create" | "update" | "delete";
   };
@@ -21,21 +21,21 @@ export type Permissions = {
 
 const ROLES = {
   admin: {
-    users: {
+    user: {
       view: true,
       create: true,
       update: true,
-      delete: true,
+      delete: (user, data) => user.id !== data.id,
     },
   },
   professor: {
-    users: {
+    user: {
       view: (user, data) => user.id === data.id,
       update: (user, data) => user.id === data.id,
     },
   },
   assistant: {
-    users: {
+    user: {
       view: (user, data) => user.id === data.id,
       update: (user, data) => user.id === data.id,
     },
@@ -48,11 +48,13 @@ export function hasPermission<Resource extends keyof Permissions>(
   action: Permissions[Resource]["action"],
   data?: Permissions[Resource]["dataType"]
 ) {
-  return user.roles.some(role => {
-    const permission = (ROLES as RolesWithPermissions)[role][resource]?.[action]
-    if (permission == null) return false
+  return user.roles.some((role) => {
+    const permission = (ROLES as RolesWithPermissions)[role][resource]?.[
+      action
+    ];
+    if (permission == null) return false;
 
-    if (typeof permission === "boolean") return permission
-    return data != null && permission(user, data)
-  })
+    if (typeof permission === "boolean") return permission;
+    return data != null && permission(user, data);
+  });
 }

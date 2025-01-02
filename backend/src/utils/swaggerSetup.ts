@@ -16,13 +16,14 @@ const setupSwagger = (): Router => {
       },
       servers: [
         {
-          url: `http://localhost:11000`,
+          url: `http://localhost:11000/api/v1`,
           description: "Development server",
         },
       ],
     },
     apis: [
-        path.join(__dirname, "../routes/auth/*.yaml") // Auth routes
+      path.join(__dirname, "../routes/auth/*.yaml"),
+      path.join(__dirname, "../routes/user/*.yaml"),
     ],
   };
 

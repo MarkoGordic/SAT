@@ -5,14 +5,14 @@ import { hasPermission, Permissions } from "../utils/permissionManager";
  * Middleware to check permissions
  * @param resource - The resource for which permission is being checked
  * @param action - The action being performed on the resource
- * @param data - Optional data passed directly as a parameter
+ * @param fetchData - Optional function to fetch data for permission check
  */
 export function checkPermission<Resource extends keyof Permissions>(
   resource: Resource,
   action: Permissions[Resource]["action"],
-  data?: Permissions[Resource]["dataType"]
+  fetchData?: (req: Request) => Promise<Permissions[Resource]["dataType"]>
 ) {
-  return (req: Request, res: Response, next: NextFunction): void => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const user = req.user;
 
     if (!user) {
@@ -20,6 +20,17 @@ export function checkPermission<Resource extends keyof Permissions>(
       return;
     }
 
+    let data: Permissions[Resource]["dataType"] | undefined;
+
+    if (fetchData) {
+      try {
+        data = await fetchData(req);
+      } catch (err) {
+        res.status(400).json({ error: "Invalid request" });
+        return;
+      }
+    }
+    
     const isAllowed = hasPermission(user, resource, action, data);
 
     if (!isAllowed) {
