@@ -15,7 +15,7 @@ type RolesWithPermissions = {
 export type Permissions = {
   user: {
     dataType: User;
-    action: "view" | "create" | "update" | "delete";
+    action: "view" | "view_all" | "create" | "update" | "delete";
   };
 };
 
@@ -23,6 +23,7 @@ const ROLES = {
   admin: {
     user: {
       view: true,
+      view_all: true,
       create: true,
       update: true,
       delete: (user, data) => user.id !== data.id,
@@ -30,13 +31,13 @@ const ROLES = {
   },
   professor: {
     user: {
-      view: (user, data) => user.id === data.id,
+      view: (user, data) => user.id === data.id && data !== null,
       update: (user, data) => user.id === data.id,
     },
   },
   assistant: {
     user: {
-      view: (user, data) => user.id === data.id,
+      view: (user, data) => user.id === data.id && data !== null,
       update: (user, data) => user.id === data.id,
     },
   },

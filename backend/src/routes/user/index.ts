@@ -1,6 +1,8 @@
 import express from "express";
 import addUserRoute from "./addUser";
 import getUserRoute from "./getUser";
+import getAllUsersRoute from "./getAllUsers";
+import updateUserRoute from "./updateUser";
 import deleteUserRoute from "./deleteUser";
 import { verifyJWT } from "../../utils/jwt";
 import { checkPermission } from "../../middleware/checkPermission";
@@ -21,6 +23,19 @@ router.get(
     return getUserById(id);
   }),
   getUserRoute
+);
+
+router.get("/all", verifyJWT, checkPermission("user", "view_all"), getAllUsersRoute);
+
+router.patch(
+  "/:id",
+  verifyJWT,
+  checkPermission("user", "update", async (req) => {
+    const { id } = req.params;
+    if (!id) throw new Error("ID is missing from the request parameters.");
+    return getUserById(id);
+  }),
+  updateUserRoute
 );
 
 router.delete(

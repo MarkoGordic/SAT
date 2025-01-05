@@ -1,0 +1,134 @@
+tags:
+  - name: User Management
+    description: Endpoints for managing users
+
+paths:
+  /user/{id}:
+    patch:
+      summary: Update user details
+      tags:
+        - User Management
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Updated email address
+                first_name:
+                  type: string
+                  description: Updated first name
+                last_name:
+                  type: string
+                  description: Updated last name
+                date_of_birth:
+                  type: string
+                  format: date
+                  description: Updated date of birth (YYYY-MM-DD)
+                old_password:
+                  type: string
+                  description: Current password (required for password updates)
+                new_password:
+                  type: string
+                  description: New password (must be at least 6 characters long)
+                avatar:
+                  type: string
+                  format: binary
+                  description: New profile picture (image file)
+              example:
+                email: newemail@example.com
+                first_name: NewFirstName
+                last_name: NewLastName
+                date_of_birth: 1990-01-01
+                old_password: oldpassword123
+                new_password: newpassword456
+      responses:
+        200:
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User updated successfully.
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 1234
+                      email:
+                        type: string
+                        format: email
+                        example: newemail@example.com
+                      first_name:
+                        type: string
+                        example: NewFirstName
+                      last_name:
+                        type: string
+                        example: NewLastName
+                      date_of_birth:
+                        type: string
+                        format: date
+                        example: 1990-01-01
+        400:
+          description: Validation errors, missing fields, or incorrect old password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Validation failed.
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                          example: Invalid email format.
+        401:
+          description: Unauthorized - user not logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized.
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found.
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error.
