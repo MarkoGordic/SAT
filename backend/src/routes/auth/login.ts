@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
 import { generateJWT } from "../../utils/jwt";
+import { Role } from "../../types";
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -27,7 +28,7 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
         const token = generateJWT({
             id: user.id,
             email: user.email,
-            roles: user.roles,
+            roles: user.roles.map(role => role as Role),
         });
 
         res.status(200).json({ token });

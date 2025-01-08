@@ -15,7 +15,7 @@ type RolesWithPermissions = {
 export type Permissions = {
   user: {
     dataType: User;
-    action: "view" | "view_all" | "create" | "update" | "delete";
+    action: "view" | "view_all" | "create" | "update" | "suspend" | "delete";
   };
 };
 
@@ -26,6 +26,7 @@ const ROLES = {
       view_all: true,
       create: true,
       update: true,
+      suspend: true,
       delete: (user, data) => user.id !== data.id,
     },
   },

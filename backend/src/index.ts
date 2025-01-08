@@ -5,6 +5,7 @@ const cors = require("cors");
 import path from "path";
 import { createServer } from "http";
 import dotenv from "dotenv";
+import { SocketIOService } from "./utils/socketIOServer";
 
 dotenv.config();
 
@@ -40,6 +41,9 @@ apiRouter.use('/user', userRouter);
 app.use('/api/v1', apiRouter);
 
 swaggerApp.use("/", setupSwagger());
+
+// SocketIO DEMO setup
+SocketIOService.getInstance(httpServer);
 
 httpServer.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

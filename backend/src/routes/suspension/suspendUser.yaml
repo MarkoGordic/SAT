@@ -1,0 +1,96 @@
+tags:
+  - name: Suspension Management
+    description: Endpoints for managing user suspensions
+
+paths:
+  /suspend:
+    post:
+      summary: Create a new suspension for a user
+      tags:
+        - Suspension Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: ID of the user being suspended
+                issuer_id:
+                  type: string
+                  description: ID of the issuer creating the suspension
+                reason:
+                  type: string
+                  description: Reason for the suspension
+                end_date:
+                  type: string
+                  format: date-time
+                  description: End date of the suspension in ISO8601 format
+              example:
+                user_id: "user123"
+                issuer_id: "issuer456"
+                reason: "Violation of terms"
+                end_date: "2025-12-31T23:59:59Z"
+      responses:
+        201:
+          description: Suspension created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Suspension created successfully.
+                  suspension:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "suspension789"
+                      user_id:
+                        type: string
+                        example: "user123"
+                      issuer_id:
+                        type: string
+                        example: "issuer456"
+                      reason:
+                        type: string
+                        example: "Violation of terms"
+                      revoked:
+                        type: boolean
+                        example: false
+                      end_date:
+                        type: string
+                        format: date-time
+                        example: "2025-12-31T23:59:59Z"
+        400:
+          description: Validation errors or missing fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Validation failed.
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                          example: User ID is required.
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error.

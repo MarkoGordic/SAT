@@ -24,6 +24,7 @@ const setupSwagger = (): Router => {
     apis: [
       path.join(__dirname, "../routes/auth/*.yaml"),
       path.join(__dirname, "../routes/user/*.yaml"),
+      path.join(__dirname, "../routes/suspension/*.yaml"),
     ],
   };
 

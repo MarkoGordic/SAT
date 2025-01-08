@@ -18,3 +18,13 @@ model User {
   roles         String[]
   profile_pic   String
 }
+
+model Suspensions {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  user_id     String
+  issuer_id   String
+  reason      String
+  revoked     Boolean
+  end_date    DateTime
+  created_at  DateTime @default(now())
+}

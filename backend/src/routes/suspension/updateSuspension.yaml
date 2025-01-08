@@ -1,0 +1,97 @@
+tags:
+  - name: Suspension Management
+    description: Endpoints for managing user suspensions
+
+paths:
+  /suspend:
+    patch:
+      summary: Update suspension to revoke state
+      tags:
+        - Suspension Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                suspension_id:
+                  type: string
+                  description: ID of the suspension to update
+                revoked:
+                  type: boolean
+                  description: Whether the suspension is revoked or not
+              example:
+                suspension_id: "suspension789"
+                revoked: true
+      responses:
+        200:
+          description: Suspension updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Suspension updated successfully.
+                  suspension:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "suspension789"
+                      user_id:
+                        type: string
+                        example: "user123"
+                      issuer_id:
+                        type: string
+                        example: "issuer456"
+                      reason:
+                        type: string
+                        example: "Violation of terms"
+                      revoked:
+                        type: boolean
+                        example: true
+                      end_date:
+                        type: string
+                        format: date-time
+                        example: "2025-12-31T23:59:59Z"
+        400:
+          description: Validation errors or missing fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Validation failed.
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                          example: Suspension ID is required.
+        404:
+          description: Suspension not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Suspension not found.
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error.
