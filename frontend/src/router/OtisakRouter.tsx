@@ -1,10 +1,11 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from '../pages/Login';
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Otisak</h1>,
+    element: <Login />,
   },
   {
     path: "*",

@@ -1,3 +1,11 @@
 {
-    
+    "otisak": "Otisak",
+    "login": {
+        "username": "Username",
+        "password": "Password",
+        "login": "Log in",
+        "forgotPassword": "Forgot your password?",
+        "askForReset": "Request a reset.",
+        "examinationPlatform": "Examination Platform"
+    }
 }

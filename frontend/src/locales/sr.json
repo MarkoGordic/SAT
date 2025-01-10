@@ -1,3 +1,11 @@
 {
-    
+    "otisak": "Otisak",
+    "login": {
+        "username": "Korisničko ime",
+        "password": "Lozinka",
+        "login": "Prijavi se",
+        "forgotPassword": "Zaboravili ste lozinku?",
+        "askForReset": "Zatražite reset.",
+        "examinationPlatform": "Platforma za ispitivanje"
+    }
 }
