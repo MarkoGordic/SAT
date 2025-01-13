@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faKey, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Login () {
 
@@ -54,7 +56,12 @@ function Login () {
                         </p>
 
                         <div className="flex flex-row mt-16 gap-1 p-1 border-b-2 border-b-grey focus-within:border-b-blue">
-                            <i className={`fi fi-rr-envelope flex items-center justify-self-center align-middle mx-1 ${usernameFocus ? `text-blue` : `text-grey`}`}></i>
+                            <FontAwesomeIcon 
+                                icon={faEnvelope} 
+                                color={usernameFocus ? "#2C57F3" : "#525364"} 
+                                size="lg"
+                                className="flex items-center justify-self-center align-middle mx-1 my-auto" 
+                            />
                             <input 
                                 type="email" id="username" name="username" placeholder={t("login.username")} 
                                 onFocus={toggleUsernameFocus} onBlur={toggleUsernameFocus}  
@@ -63,15 +70,24 @@ function Login () {
                         </div>
 
                         <div className="flex flex-row mt-6 gap-1 p-1 border-b-2 border-b-grey focus-within:border-b-blue">
-                            <i className={`fi fi-rr-key flex items-center justify-self-center align-middle mx-1 rotate-180 ${passwordFocus ? `text-blue` : `text-grey`}`}></i>
+                            <FontAwesomeIcon 
+                                icon={faKey} 
+                                color={passwordFocus ? "#2C57F3" : "#525364"} 
+                                size="lg"
+                                className="flex items-center justify-self-center align-middle mx-1 my-auto" 
+                            />
                             <input 
                                 type={isPasswordVisible ? "text" : "password"} id="password" name="password" placeholder={t("login.password")} 
                                 onFocus={togglePasswordFocus} onBlur={togglePasswordFocus}  
                                 className="w-full h-6 p-2 border-none outline-none bg-transparent placeholder:text-grey"
                             />
-                            <div onClick={togglePasswordVisibility}>
-                                <i className={`${isPasswordVisible ? `fi fi-rr-eye-crossed` : `fi fi-rs-eye`} align-middle text-grey cursor-pointer`}></i>
-                            </div>
+                            <FontAwesomeIcon 
+                                icon={isPasswordVisible ? faEyeSlash : faEye} 
+                                color="#525364"
+                                size="1x"
+                                onClick={togglePasswordVisibility}
+                                className="flex items-center justify-self-center align-middle mx-1 my-auto cursor-pointer hover:scale-110 transform transition duration-300" 
+                            />
                         </div>
 
                         <button type="submit" id="login-button" className="w-full h-10 mt-16 mb-5 uppercase cursor-pointer outline-none border-none rounded-lg bg-blue text-white">
