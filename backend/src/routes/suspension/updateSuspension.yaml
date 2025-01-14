@@ -8,6 +8,8 @@ paths:
       summary: Update suspension to revoke state
       tags:
         - Suspension Management
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:

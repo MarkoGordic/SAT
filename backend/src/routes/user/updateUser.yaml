@@ -8,6 +8,8 @@ paths:
       summary: Update user details
       tags:
         - User Management
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path

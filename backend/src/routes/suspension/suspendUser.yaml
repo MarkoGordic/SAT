@@ -8,6 +8,8 @@ paths:
       summary: Create a new suspension for a user
       tags:
         - Suspension Management
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:

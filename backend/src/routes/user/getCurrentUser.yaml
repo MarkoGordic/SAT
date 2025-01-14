@@ -1,19 +1,14 @@
 paths:
-  /user/{id}:
+  /user/me:
     get:
-      summary: Get user data by ID
+      summary: Retrieve the currently authenticated user's data
+      description: |
+        Returns the user profile data for the user associated with the provided 
+        Bearer token in the Authorization header.
       tags:
         - User Management
       security:
         - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of the user to retrieve
-          schema:
-            type: string
-            example: "abc123"
       responses:
         200:
           description: User data retrieved successfully
@@ -50,6 +45,16 @@ paths:
                     type: string
                     format: date-time
                     example: 2024-01-01T12:34:56Z
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized.
         404:
           description: User not found
           content:

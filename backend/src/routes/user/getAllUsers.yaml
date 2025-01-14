@@ -4,6 +4,8 @@ paths:
       summary: Get all users with pagination
       tags:
         - User Management
+      security:
+        - bearerAuth: []
       parameters:
         - name: offset
           in: query

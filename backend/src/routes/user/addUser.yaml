@@ -8,6 +8,8 @@ paths:
       summary: Add a new user
       tags:
         - User Management
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
