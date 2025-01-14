@@ -28,3 +28,12 @@ model Suspensions {
   end_date    DateTime
   created_at  DateTime @default(now())
 }
+
+model Log {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  level      String
+  message    String
+  code       String  
+  meta       Json     @default("{}")
+  created_at DateTime @default(now())
+}

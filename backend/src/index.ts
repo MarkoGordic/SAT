@@ -6,6 +6,7 @@ import path from "path";
 import { createServer } from "http";
 import dotenv from "dotenv";
 import { SocketIOService } from "./utils/socketIOServer";
+import { logCode } from './utils/logger/otisakLogger';
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ apiRouter.get("/", (req: Request, res: Response) => {
 import authRouter from './routes/auth';
 apiRouter.use('/auth', authRouter);
 import userRouter from './routes/user';
+import { LOG_CODE_LIBRARY } from "./utils/logger/logDefinitions";
 apiRouter.use('/user', userRouter);
 
 app.use('/api/v1', apiRouter);
@@ -46,9 +48,9 @@ swaggerApp.use("/", setupSwagger());
 SocketIOService.getInstance(httpServer);
 
 httpServer.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  logCode(LOG_CODE_LIBRARY.INFO_API_START);
 });
 
 swaggerApp.listen(swaggerPort, () => {
-  console.log(`[Swagger]: Swagger docs available at http://localhost:${swaggerPort}/api-docs`);
+  logCode(LOG_CODE_LIBRARY.INFO_SWAGGER_START);
 });

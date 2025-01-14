@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
 import { generateJWT } from "../../utils/jwt";
 import { Role } from "../../types";
+import { OtisakLogger } from "../../utils/logger/otisakLogger";
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -33,7 +34,6 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
 
         res.status(200).json({ token });
     } catch (error) {
-        console.error("error: ", error);
         res.status(500).json({ message: "Internal server error." });
     }
 });

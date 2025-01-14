@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { hasPermission, Permissions } from "../utils/permissionManager";
+import { OtisakLogger, logCode } from "../utils/logger/otisakLogger";
+import { log } from "console";
+import { LOG_CODE_LIBRARY } from "../utils/logger/logDefinitions";
 
 /**
  * Middleware to check permissions
@@ -17,6 +20,7 @@ export function checkPermission<Resource extends keyof Permissions>(
 
     if (!user) {
       res.status(401).json({ error: "Unauthorized" });
+      logCode(LOG_CODE_LIBRARY.ERROR_UNAUTHORIZED, { req, resource, action });
       return;
     }
 
@@ -27,6 +31,7 @@ export function checkPermission<Resource extends keyof Permissions>(
         data = await fetchData(req);
       } catch (err) {
         res.status(400).json({ error: "Invalid request" });
+        logCode(LOG_CODE_LIBRARY.WARN_INVALID_REQUEST, { req, resource, action });
         return;
       }
     }
@@ -35,6 +40,7 @@ export function checkPermission<Resource extends keyof Permissions>(
 
     if (!isAllowed) {
       res.status(403).json({ error: "Forbidden" });
+      logCode(LOG_CODE_LIBRARY.ERROR_FORBIDDEN, { req, resource, action });
       return;
     }
 
