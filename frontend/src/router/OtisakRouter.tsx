@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from '../pages/Login';
+import NotFound from '../pages/NotFound';
 
 const routes = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "*",
-    element: <div>Not Found</div>,
+    element: <NotFound />,
   },
 ]);
 

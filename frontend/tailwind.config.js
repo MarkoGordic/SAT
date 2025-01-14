@@ -9,7 +9,9 @@ export default {
       colors: {
         "black": "#0A0A0C",
         "grey": "#525364",
-        "blue": "#2C57F3"
+        "blue": "#2C57F3",
+        "dark-blue": "#2046C1",
+        "red": "#8A1A1B"
       },
       height: {
         "screen-dhv": "100dvh"
