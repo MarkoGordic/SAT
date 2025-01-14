@@ -7,5 +7,11 @@
         "forgotPassword": "Forgot your password?",
         "askForReset": "Request a reset.",
         "examinationPlatform": "Examination Platform"
+    },
+    "notFound": {
+        "pageNotFound": "Page not found",
+        "notFoundDescription": "It looks like the page you were looking for doesn't exist.",
+        "backToHome": "Back to home"
     }
+
 }

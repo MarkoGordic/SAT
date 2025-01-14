@@ -7,5 +7,10 @@
         "forgotPassword": "Zaboravili ste lozinku?",
         "askForReset": "Zatražite reset.",
         "examinationPlatform": "Platforma za ispitivanje"
+    },
+    "notFound": {
+        "pageNotFound": "Stranica nije pronađena",
+        "notFoundDescription": "Izgleda da stranica koju ste tražili ne postoji.",
+        "backToHome": "Povratak na početnu"
     }
 }
