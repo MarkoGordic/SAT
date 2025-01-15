@@ -10,9 +10,9 @@ const setupSwagger = (): Router => {
     definition: {
       openapi: "3.0.0",
       info: {
-        title: "OTISAK API",
-        version: "1.0.0",
-        description: "API documentation for the OTISAK",
+        title: "SAT API",
+        version: "0.0.1",
+        description: "API documentation for the SAT",
       },
       servers: [
         {

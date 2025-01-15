@@ -37,10 +37,10 @@ function Login () {
             const response = await axiosInstance.post("/auth/login", { email, password });
             const token = response.data.token;
             localStorage.setItem("token", token);
-            alert("Successful login");  // TO DO: navigate to home page
+            alert("Successful login");  // TODO: navigate to home page
         } catch(error: any) {
             if(error?.status === 401) {
-                alert("Wrong credentials"); // TO DO: add custom message (toast)
+                alert("Wrong credentials"); // TODO: add custom message (toast)
             } else {
                 console.log("Error: ", error);
             }
@@ -77,7 +77,7 @@ function Login () {
                         <img className="mx-auto" src="/img/logo.png" />
 
                         <h1 className="mt-3 text-center text-5xl text-white uppercase">
-                            {t("otisak")}
+                            {t("sat")}
                         </h1>
                         <p className="mt-3 text-center text-grey uppercase tracking-[0.3em]">
                             - {t("login.examinationPlatform")} -

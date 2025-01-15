@@ -31,7 +31,7 @@ app.use(cors(corsOptions));
 const apiRouter = express.Router();
 
 apiRouter.get("/", (req: Request, res: Response) => {
-  res.send("Hello from OTISAK API!");
+  res.send("Hello from SAT API!");
 });
 
 import authRouter from './routes/auth';

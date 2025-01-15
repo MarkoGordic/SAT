@@ -14,8 +14,8 @@ const routes = createBrowserRouter([
   },
 ]);
 
-const OtisakRouter: React.FC = () => (
+const SATRouter: React.FC = () => (
   <RouterProvider router={routes} />
 );
 
-export default OtisakRouter;
+export default SATRouter;

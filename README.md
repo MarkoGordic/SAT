@@ -1,1 +1,1 @@
-# Otisak
+# ⏰ SAT - System for Automated Testing
