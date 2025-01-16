@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import BackgroundLayout from "../components/layouts/BackgroundLayout";
 import { BACKGROUND } from "../constants/backgrounds";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
 import { axiosInstance } from "../global/AxiosInstance";
 import { INDEX_NUMBER_REGEX } from "../constants/regex";
 import Copyright from "../components/Copyright";
+import FormButton from "../components/FormButton";
 
 const StudentLogin: React.FC = () => {
     const { t } = useTranslation();
@@ -64,17 +63,11 @@ const StudentLogin: React.FC = () => {
                             ${indexValid ? `border-light-grey text-white` : `border-red text-red`}`}
                     />
 
-                    <button
-                        type="submit"
-                        id="login-button"
-                        className="w-full h-10 mt-8 outline-none border-none rounded-lg bg-blue uppercase text-white tracking-widest cursor-pointer "
-                    >
-                        {isLoading ? (
-                            <FontAwesomeIcon icon={faSpinner} spin />
-                        ) :
-                            t("login.login")
-                        }
-                    </button>
+                    <FormButton 
+                        title={t("login.login")} 
+                        isLoading={isLoading}
+                        className="mt-8"
+                    />    
                 </form>
 
                 <p className="mt-24 mb-48 text-white">
