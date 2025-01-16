@@ -1,16 +1,33 @@
 {
     "sat": "SAT",
+    "copyright": "© 2025 Marko Gordić, Sara Poparić, Radovan Turović",
     "login": {
+        "examinationPlatform": "Platforma za ispitivanje",
         "username": "Korisničko ime",
         "password": "Lozinka",
         "login": "Prijavi se",
         "forgotPassword": "Zaboravili ste lozinku?",
         "askForReset": "Zatražite reset.",
-        "examinationPlatform": "Platforma za ispitivanje"
+        "askForPasswordReset": "Zatražite reset",        
+        "backToLogin": "Nazad na prijavu"
+    },
+    "passwordReset": {
+        "title": "Resetovanje lozinke",
+        "description": "Unesite svoju email adresu i poslacemo Vam link za resetovanje lozinke",
+        "emailLabel": "Email adresa",
+        "buttonTitle": "Posalji link za reset",
+        "backToLogin": "Nazad na prijavu"
     },
     "notFound": {
         "pageNotFound": "Stranica nije pronađena",
         "notFoundDescription": "Izgleda da stranica koju ste tražili ne postoji.",
         "backToHome": "Povratak na početnu"
+    },
+    "student": {
+        "login": {
+            "indexLabel": "Broj indeksa",
+            "index": "Indeks",
+            "warning": "Prijavom na korisnički nalog garantujete ispravnost unetih podataka. Svaka zloupotreba je kažnjiva."
+        }
     }
 }
