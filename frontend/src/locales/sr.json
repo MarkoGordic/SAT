@@ -1,5 +1,6 @@
 {
     "sat": "SAT",
+    "copyright": "© 2025 Marko Gordić, Sara Poparić, Radovan Turović",
     "login": {
         "username": "Korisničko ime",
         "password": "Lozinka",
@@ -12,5 +13,12 @@
         "pageNotFound": "Stranica nije pronađena",
         "notFoundDescription": "Izgleda da stranica koju ste tražili ne postoji.",
         "backToHome": "Povratak na početnu"
+    },
+    "student": {
+        "login": {
+            "indexLabel": "Broj indeksa",
+            "index": "Indeks",
+            "warning": "Prijavom na korisnički nalog garantujete ispravnost unetih podataka. Svaka zloupotreba je kažnjiva."
+        }
     }
 }

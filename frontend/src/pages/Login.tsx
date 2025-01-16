@@ -63,7 +63,7 @@ function Login () {
                 <div className="relative z-10 bg-transparent flex flex-col items-center justify-center mx-auto">
                     <img className="mx-auto scale-150" src="/img/logo.png" />
                     <p className="mt-16 text-2xl text-center">
-                        © 2025 Marko Gordić, Radovan Turović, Sara Poparić
+                        {t("copyright")}
                     </p>
                     <p className="text-white opacity-60">
                         Designed by Simenesky

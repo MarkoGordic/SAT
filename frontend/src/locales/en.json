@@ -1,5 +1,6 @@
 {
     "sat": "SAT",
+    "copyright": "By logging into your user account, you guarantee the accuracy of the entered data. Any misuse is punishable.",
     "login": {
         "username": "Username",
         "password": "Password",
@@ -12,6 +13,12 @@
         "pageNotFound": "Page not found",
         "notFoundDescription": "It looks like the page you were looking for doesn't exist.",
         "backToHome": "Back to home"
+    },
+    "student": {
+        "login": {
+            "indexLabel": "Index number",
+            "index": "Index"
+        }
     }
 
 }
