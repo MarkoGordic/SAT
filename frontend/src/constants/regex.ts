@@ -1,1 +1,1 @@
-export const INDEX_NUMBER_REGEX: RegExp = /^[A-Z]{2}\d{1,3}-\d{4}$/;
+export const INDEX_NUMBER_REGEX: RegExp = /^[a-z]{2}\d{1,3}-\d{4}$/;

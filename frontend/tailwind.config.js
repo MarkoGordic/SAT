@@ -13,7 +13,8 @@ export default {
         "light-grey": "#A6A6A6",
         "blue": "#2C57F3",
         "dark-blue": "#2046C1",
-        "red": "#8A1A1B"
+        "red": "#8A1A1B",
+        "green": "#3AD365"
       },
       height: {
         "screen-dhv": "100dvh"

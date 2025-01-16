@@ -6,12 +6,14 @@ import { axiosInstance } from "../global/AxiosInstance";
 import { INDEX_NUMBER_REGEX } from "../constants/regex";
 import Copyright from "../components/Copyright";
 import FormButton from "../components/FormButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 const StudentLogin: React.FC = () => {
     const { t } = useTranslation();
 
     const [index, setIndex] = useState("");
-    const [indexValid, setIndexValid] = useState(true);
+    const [indexValid, setIndexValid] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -35,9 +37,9 @@ const StudentLogin: React.FC = () => {
         }
     }
 
-    const HandleIndexInputChange = (index: string) => {
-        setIndex(index);
-        setIndexValid(INDEX_NUMBER_REGEX.test(index));
+    const HandleIndexInputChange = (text: string) => {
+        setIndex(text);
+        setIndexValid(INDEX_NUMBER_REGEX.test(text));
     }
 
     return (
@@ -53,15 +55,20 @@ const StudentLogin: React.FC = () => {
                     <label className="text-white uppercase tracking-[0.2em]" htmlFor="index">
                         {t("student.login.indexLabel")}
                     </label>
-                    <input
-                        type="text"
-                        name="index"
-                        placeholder={t("student.login.index")}
-                        value={index}
-                        onChange={(e) => HandleIndexInputChange(e.target.value)}
-                        className={`w-full h-10 mt-1 px-3 outline-none border-[1.5px] rounded-md bg-light-black uppercase 
-                            ${indexValid ? `border-light-grey text-white` : `border-red text-red`}`}
-                    />
+                    <div className="flex flex-row w-full h-10 mt-1 px-3 border-[1.5px] rounded-md bg-light-black border-light-grey text-white lowercase focus-within:border-blue">
+                        <input
+                            type="text"
+                            name="index"
+                            placeholder={t("student.login.index")}
+                            value={index}
+                            onChange={(e) => HandleIndexInputChange(e.target.value)}
+                            className="w-full bg-transparent outline-none"
+                        />
+                        <FontAwesomeIcon 
+                            icon={faCheckCircle}                        
+                            className={`align-middle my-auto ${indexValid ? `text-green` : `text-white`}`}    
+                        />
+                    </div>
 
                     <FormButton 
                         title={t("login.login")} 
