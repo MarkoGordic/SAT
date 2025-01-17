@@ -1,0 +1,5 @@
+site_name: SAT Documentation
+site_description: Documentation for SAT - System for Automatic Testing
+site_url: https://docs.sat.gordic.rs
+theme:
+  name: material
