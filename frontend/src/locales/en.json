@@ -17,7 +17,12 @@
     "student": {
         "login": {
             "indexLabel": "Index number",
-            "index": "Index"
+            "index": "Index",
+            "warning": "By logging into your account, you guarantee the accuracy of the entered data. Any misuse is punishable.",
+            "loggedAs": "You are logged in as:",
+            "pleaseWait": "Please be patient while the assistant starts the examination process.",
+            "logOut": "Log out",
+            "cheatingWarning": "Any form of unauthorized assistance or cheating during the exam is strictly prohibited. Violating this rule may result in disciplinary actions, including expulsion from the exam and a potential ban on taking future exam sessions."
         }
     }
 

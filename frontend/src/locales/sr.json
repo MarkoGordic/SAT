@@ -27,7 +27,11 @@
         "login": {
             "indexLabel": "Broj indeksa",
             "index": "Indeks",
-            "warning": "Prijavom na korisnički nalog garantujete ispravnost unetih podataka. Svaka zloupotreba je kažnjiva."
+            "warning": "Prijavom na korisnički nalog garantujete ispravnost unetih podataka. Svaka zloupotreba je kažnjiva.",
+            "loggedAs": "Prijavljeni ste kao:",
+            "pleaseWait": "Molimo Vas da budete strpljivi dok asistent ne pokrene proces polaganja.",
+            "logOut": "Odjavi se",
+            "cheatingWarning": "Svaka vrsta neovlašćenog korišćenja pomoći ili prepisivanja tokom ispita strogo je zabranjena. U slučaju kršenja ovog pravila, predviđene su disciplinske mere, uključujući isključenje sa ispita i mogućnost zabrane pristupanja ispitnim rokovima u budućnosti."
         }
     }
 }

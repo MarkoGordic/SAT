@@ -50,3 +50,26 @@ input:-webkit-autofill {
                 radial-gradient(circle at 0% 100%, rgba(255, 255, 255, 0.35) 2%, rgba(0, 0, 0, 0.5) 30%, black 100%);
     background-blend-mode: screen;
 }
+
+@keyframes moveBg {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+.loading-bar {
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(90, 126, 255) 0%,
+        rgba(90, 126, 255) 15%,
+        rgba(45, 86, 243) 15%,
+        rgba(45, 86, 243) 30%
+    );
+    background-size: 50% 100%;
+    background-position: 45px 0; 
+    animation: moveBg 10s linear infinite;
+}
